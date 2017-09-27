@@ -90,21 +90,21 @@
 			</article>
 
 		<!-- Contact -->
-			<article class="container box style3">
+			<article id="submitBox" class="container box style3">
 				<header>
 					<h2>Find your match</h2>
-					<p>You will be emailed your spren's Reddit name in the next few hours.</p>
+					<p>Discover a fan who thinks like you do.</p>
 				</header>
-				<form method="post" action="#">
+				<form method="#" action="#" onsubmit="return false;">
 					<div class="row 50%">
-						<div class="6u 12u$(mobile)"><input type="text" class="text" name="name" placeholder="Name" /></div>
-						<div class="6u$ 12u$(mobile)"><input type="text" class="text" name="email" placeholder="Email" /></div>
+						<div class="6u 12u$(mobile)"><input id="name" type="text" class="text" name="name" placeholder="Name" /></div>
+						<div class="6u$ 12u$(mobile)"><input id="email" type="text" class="text" name="email" placeholder="Email" /></div>
 						<div class="12u$">
-							<textarea name="message" placeholder="Message"></textarea>
+							<textarea name="message" id="message" placeholder="Message"></textarea>
 						</div>
 						<div class="12u$">
 							<ul class="actions">
-								<li><input type="submit" value="Send Message" /></li>
+								<li><input type="submit" action="" id="submitForm" value="Send Message" /></li>
 							</ul>
 						</div>
 					</div>
@@ -291,7 +291,35 @@
 			$(".choice").click(function(e) {
 				$('[name="' + $(e.target).attr('name') + '"]').css('color', 'black')
 				$(e.target).css('color', 'red')
-			})
+			});
+
+			$("#submitForm").click(function(e) {
+				var info = getInfo();
+				if (info[0]) {
+					clean();
+				};
+			});
+
+			function getInfo() {
+				var data = {};
+				data.name = $("#name").val();
+				data.email = $("#email").val();
+				data.message = $("#message").val();
+				data.choices = [];
+				$('[style="color:red"]').each(function( index ) {
+					data.choices.push($( this ).attr('name'))
+				});
+				var re = /\S+@\S+\.\S+/;
+				if (data.name != "" && re.test(data.email)) {
+					return [true, data]
+				} else {
+					return [false, data]
+				};
+			};
+
+			function clean(){
+				$("#submitBox").html("<header><h2>Submission Received</h2><p>You will be emailed your spren's Reddit name in the next few hours.</p></header>")
+			};
 			</script>
 
 	</body>
