@@ -9,6 +9,6 @@ admin.autodiscover()
 # url(r'^blog/', include('blog.urls')),
 
 urlpatterns = [
-    url(r'^$', include('quiz.urls')),
+    url(r'^', include('quiz.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
