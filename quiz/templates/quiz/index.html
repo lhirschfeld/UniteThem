@@ -289,8 +289,8 @@
 			<script src="{% static 'assets/js/main.js' %}"></script>
 			<script>
 			$(".choice").click(function(e) {
-				$('[name="' + $(e.target).attr('name') + '"]').css('color', 'black')
-				$(e.target).css('color', 'red')
+				$('[name="' + $(e.target).attr('name') + '"]').attr('style', 'color:black')
+				$(e.target).attr('style', 'color:red')
 			});
 
 			$("#submitForm").click(function(e) {
