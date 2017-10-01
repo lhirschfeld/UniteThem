@@ -13,4 +13,4 @@ class Fan(models.Model):
     ally = models.CharField(max_length=50)
 
     def sendEmail(self, address):
-        send_mail('UniteThem - Fan Match Found', 'We have matched you with another fan of the Stormlight Archives. Their information is below. Please reply to this email if you have any problems - thank you!\nEmail: ' + self.message + '\nMessage: ' + self.message + '\n', 'unitethemoathbringer@gmail.com', [address])
+        send_mail('UniteThem - Fan Match Found', 'We have matched you with another fan of the Stormlight Archives. Their information is below. Please reply to this email if you have any problems - thank you!\nName: ' + self.name + '\nMessage: ' + self.message + '\n', 'unitethemoathbringer@gmail.com', [address])
