@@ -26,7 +26,7 @@ def new(request):
                            ally = ally)
         users = Fan.objects.all()
         pop = len(users)
-        if pop > 9 or (pop > 1 and (datetime.now() - users[pop-1].created_at).seconds / 3600 > 4):
+        if pop > 9:
             oldest = users[0]
             others = users[1:]
             bestMatch = None
