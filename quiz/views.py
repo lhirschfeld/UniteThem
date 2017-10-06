@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Fan
 from datetime import datetime
-def index(request):users = Fan.objects.all()
+def index(request):
+    users = Fan.objects.all()
     pop = len(users)
     if pop > 3:
         oldest = users[0]
