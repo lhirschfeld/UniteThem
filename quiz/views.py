@@ -3,7 +3,30 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Fan
 from datetime import datetime
-def index(request):
+def index(request):users = Fan.objects.all()
+pop = len(users)
+if pop > 3:
+    oldest = users[0]
+    others = users[1:]
+    bestMatch = None
+    bestFactor = -1
+    for user in others:
+        factor = 0
+        if user.form == oldest.form:
+            factor += 1
+        if user.oath == oldest.oath:
+            factor += 1
+        if user.ally == oldest.ally:
+            factor += 1
+        if factor > bestFactor:
+            bestFactor = factor
+            bestMatch = user
+    print(bestFactor)
+    oldest.sendEmail(bestMatch.email)
+    bestMatch.sendEmail(oldest.email)
+    oldest.delete()
+    bestMatch.delete()
+    
     return HttpResponse(loader.get_template('quiz/index.html').render())
 
 def new(request):
