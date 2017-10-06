@@ -6,7 +6,7 @@ from datetime import datetime
 def index(request):
     users = Fan.objects.all()
     pop = len(users)
-    if pop > 3:
+    if pop > 1:
         oldest = users[0]
         others = users[1:]
         bestMatch = None
